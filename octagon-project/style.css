@@ -1,0 +1,256 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #222;
+  color: #eee;
+}
+
+.site-header {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 16px 0;
+}
+.site-header h1 { margin: 0 0 8px; }
+
+.nav { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.nav a { color: #f0b429; }
+.nav a:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+
+.task {
+  max-width: 1100px;
+  margin: 24px auto 0;
+  padding: 20px 16px 8px;
+  border-top: 2px solid #444;
+}
+.task > h2 { margin: 0 0 16px; }
+
+input, select, button { font: inherit; }
+
+button {
+  padding: 10px 12px;
+  background: #444;
+  color: #eee;
+  border: 1px solid #777;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #5a5a5a; }
+button:focus-visible { outline: 3px solid #f0b429; outline-offset: 2px; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+progress {
+  width: 100%;
+  height: 16px;
+  accent-color: #3fa34d;
+}
+progress.low { accent-color: #d33; }
+
+label { display: block; margin-bottom: 4px; }
+
+.game { max-width: 700px; margin: 0 auto; }
+
+.cage {
+  padding: 16px;
+  border: 2px solid #777;
+  background-color: #1a1a1a;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url("images/cage.webp");
+  background-size: cover;
+  background-position: center;
+}
+
+.fighters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.fighter {
+  background: rgba(51, 51, 51, 0.85);
+  border: 1px solid #555;
+  padding: 12px;
+}
+.fighter h3 { margin: 0 0 8px; font-size: 1.1rem; }
+.fighter p { margin: 0 0 6px; }
+
+.portrait {
+  display: block;
+  width: 100%;
+  max-height: 160px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+#message { min-height: 1.4em; padding: 6px; }
+#message.error { background: #4a1f1f; border-left: 4px solid #d33; }
+
+#controls {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+#controls button { padding: 12px 6px; font-size: 1rem; }
+
+#restart { margin-top: 12px; width: 100%; }
+
+#result { padding: 12px; font-weight: bold; }
+#result.win { background: #1f4a2a; border: 1px solid #3fa34d; }
+#result.loss { background: #4a1f1f; border: 1px solid #d33; }
+#result.draw { background: #4a4a1f; border: 1px solid #d3c233; }
+
+#log:empty::before { content: "Nothing happened yet."; color: #888; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+.tool { display: flex; flex-direction: column; gap: 4px; }
+.tool label { margin: 0; }
+
+.toolbar input, .toolbar select {
+  padding: 8px;
+  min-width: 180px;
+  background: #333;
+  color: #eee;
+  border: 1px solid #777;
+}
+.toolbar input:focus-visible, .toolbar select:focus-visible { outline: 3px solid #f0b429; }
+button.active { background: #1f4a2a; border-color: #3fa34d; }
+
+#progress-text { margin: 8px 0 4px; }
+
+#board-message { min-height: 1.4em; padding: 6px; margin: 8px 0; }
+#board-message.error { background: #4a1f1f; border-left: 4px solid #d33; }
+
+#empty-note {
+  padding: 8px;
+  background: #4a4a1f;
+  border: 1px solid #d3c233;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.column {
+  background: #2d2d2d;
+  border: 1px solid #555;
+  padding: 10px;
+  min-height: 120px;
+}
+.column.full { border-color: #d33; }
+.column h3 { margin: 0 0 10px; font-size: 1.1rem; }
+
+.card {
+  background: #3a3a3a;
+  border-left: 6px solid #777;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+.card.priority-1 { border-left-color: #d33; }
+.card.priority-2 { border-left-color: #f0b429; }
+.card.priority-3 { border-left-color: #3fa34d; }
+.card.finished { opacity: 0.7; }
+.card h4 { margin: 0 0 4px; font-size: 1rem; }
+.card p { margin: 0 0 6px; font-size: 0.9rem; color: #ccc; }
+
+.badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  background: #d33;
+  color: #fff;
+  font-size: 0.75rem;
+}
+
+.card-buttons { display: flex; gap: 6px; }
+.card-buttons button { flex: 1; padding: 6px; }
+
+.empty { color: #888; font-style: italic; }
+
+.ticket-box { max-width: 900px; margin: 0 auto; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+#ticket-form, .preview {
+  background: #2d2d2d;
+  border: 1px solid #555;
+  padding: 14px;
+}
+
+.field { margin-bottom: 12px; }
+
+#ticket-form input, #ticket-form select {
+  width: 100%;
+  padding: 8px;
+  background: #333;
+  color: #eee;
+  border: 2px solid #777;
+}
+#ticket-form input:hover, #ticket-form select:hover { border-color: #aaa; }
+#ticket-form input:focus-visible, #ticket-form select:focus-visible { outline: 3px solid #f0b429; outline-offset: 1px; }
+#ticket-form input.invalid, #ticket-form select.invalid { border-color: #d33; }
+#ticket-form input.valid, #ticket-form select.valid { border-color: #3fa34d; }
+
+#ticket-form .hint { margin: 4px 0 0; font-size: 0.85rem; color: #aaa; }
+#ticket-form .error { margin: 4px 0 0; min-height: 1.2em; font-size: 0.9rem; color: #ff7b7b; }
+
+#book-btn { width: 100%; padding: 12px; }
+
+#error-summary {
+  padding: 10px;
+  margin: 0 0 12px;
+  background: #4a1f1f;
+  border-left: 4px solid #d33;
+  font-weight: bold;
+}
+
+.preview h3 { margin: 0 0 10px; font-size: 1.1rem; }
+.preview dl { margin: 0; }
+.preview dt { font-size: 0.8rem; color: #aaa; margin-top: 8px; }
+.preview dd { margin: 0; font-weight: bold; overflow-wrap: anywhere; }
+
+#ticket-result { margin-top: 16px; }
+#ticket-result:focus-visible { outline: 3px solid #f0b429; }
+
+.success {
+  padding: 10px;
+  margin: 0 0 10px;
+  background: #1f4a2a;
+  border: 1px solid #3fa34d;
+  font-weight: bold;
+}
+
+.ticket {
+  background: #2d2d2d;
+  border: 2px dashed #f0b429;
+  padding: 14px;
+}
+.ticket h3 { margin: 0 0 8px; }
+.ticket p { margin: 0 0 6px; overflow-wrap: anywhere; }
+.ticket .code { font-size: 1.5rem; letter-spacing: 2px; color: #f0b429; font-weight: bold; }
+
+@media (max-width: 800px) {
+  #board { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+  .fighters { grid-template-columns: 1fr; }
+  #controls { grid-template-columns: 1fr 1fr; }
+}
